@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // 获取登录页面
-router.route('/login').get(function(req, res){
+router.route('/').get(function(req, res){
 	res.render('login',{ title: '登录页面' })
 }).post(function(req, res){
 	if(req.body.username == 'admin' && req.body.pwd == 'admin123'){

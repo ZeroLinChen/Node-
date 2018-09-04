@@ -29,35 +29,12 @@ app.use(session({
 	resave : true,
 	saveUninitialized: false, // 是否保存未初始化的会话
 	cookie : {
-		maxAge : 1000 * 60 * 30, // 设置 session 的有效时间，单位毫秒
+		maxAge : 1000 * 60 * 240, // 设置 session 的有效时间，单位毫秒
 	},
 }));
 
-// app.use('/login', loginRouter);
-// 获取登录页面
-app.get('/login', function(req, res){
-	res.render('login',{ title: '登录页面' })
-});
-
-// 用户登录
-app.post('/login', function(req, res){
-	if(req.body.username == 'admin' && req.body.pwd == 'admin123'){
-		req.session.userName = req.body.username; // 登录成功，设置 session
-		res.redirect('/');
-	}
-	else{
-		res.json({ret_code : 1, ret_msg : '账号或密码错误'});// 若登录失败，重定向到登录页面
-	}
-});
-
-// 获取主页
-app.get('/', function (req, res) {
-	if(req.session.userName){  //判断session 状态，如果有效，则返回主页，否则转到登录页面
-		res.render('home',{username : req.session.userName});
-	}else{
-		res.redirect('login');
-	}
-})
+app.use('/login', loginRouter);
+app.use('/', indexRouter);
 
 // 退出
 app.get('/logout', function (req, res) {
