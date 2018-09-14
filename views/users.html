@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>123</title>
+	<title></title>
+	<link rel='stylesheet' href='/css/style.css' />
+	<script src="/js/shim.js"></script>
+	<script src="/js/xlsx.full.min.js"></script>
 </head>
 <body>
-	11111111111111
+<div id="htmlOut"></div>
+<script>
+		var workbook = <%- html%>;
+		console.log(workbook);
+		var X = XLSX;
+		var HTMLOUT = document.getElementById('htmlOut');
+		var to_html = function to_html(workbook) {
+			HTMLOUT.innerHTML = "";
+			console.log(workbook.SheetNames);
+			workbook.SheetNames.forEach(function(sheetName) {
+				var htmlstr = X.write(workbook, {sheet:sheetName, type:'string', bookType:'html'});
+				HTMLOUT.innerHTML += htmlstr;
+			});
+			return "";
+		};
+		to_html(workbook);
+</script>
 </body>
 </html>

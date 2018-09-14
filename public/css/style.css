@@ -9,6 +9,19 @@ a {
   color: #00B7FF;
 }
 
+table {
+  border-spacing: 0;
+}
+table,tr,td {
+  border: 1px solid #333;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+td {
+  min-height: 10px;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;

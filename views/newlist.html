@@ -1,0 +1,33 @@
+<h2>添加菜单</h2>
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">菜单名</span>
+        <input id="name" type="text" name="name" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <!--<div class="input-group">-->
+    <!--<span class="input-group-addon" id="basic-addon1">标识</span>-->
+    <!--<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">-->
+    <!--</div>-->
+    <button id="addList" class="btn btn-primary btn-block" style="width: 60px;" type="submit">添加</button>
+</div>
+
+<script>
+    $('#addList').on('click', function(e){
+        e.preventDefault();
+        var name =$('#name').val();
+        $.ajax({
+            data : { name : name },
+            url : '/newlist',
+            type: 'post',
+            dataType : 'json',
+            success : function(data){
+                console.log(data);
+                if( !data.msg ){
+                    alert('添加成功');
+                }else{
+                    alert(data.msg);
+                }
+            }
+        })
+    })
+</script>

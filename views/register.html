@@ -1,0 +1,42 @@
+<h2>新增成员</h2>
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">用户名</span>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">密码</span>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">确认密码</span>
+        <input type="password" id="confirmdpwd" name="confirmdpwd" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <button id="register" class="btn btn-primary btn-block" style="width: 60px;" type="submit">注册</button>
+</div>
+<script>
+    $(function () {
+        $('#register').on('click', function(e){
+            e.preventDefault();
+            var name =$('#name').val();
+            var pwd = $('#pwd').val();
+            if( pwd !== $('#confirmdpwd').val() ){
+                alert('两次输入的密码不一致');
+            }
+            $.ajax({
+                data : { name: name, password: pwd },
+                url : '/register',
+                type: 'post',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                    if( !data.msg ){
+                        alert('添加成功');
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            })
+        })
+    })
+</script>

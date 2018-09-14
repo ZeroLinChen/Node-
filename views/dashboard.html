@@ -1,15 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../../favicon.ico">
-
 	<title>Dashboard Template for Bootstrap</title>
 
 	<!-- Bootstrap core CSS -->
@@ -17,20 +12,27 @@
 
 	<!-- Custom styles for this template -->
 	<link href="/css/dashboard.css" rel="stylesheet">
-
+	<script src="/js/jquery.min.js"></script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Project name</a>
+		<div class="navbar-header" style="width: 100%;">
+			<a class="navbar-brand" href="#">纪检监察管理系统</a>
+			<a href="/logout" class="navbar-right" style="line-height: 45px; margin-right: 15px;">退出</a>
+			<div class="navbar-right" style="color: #9d9d9d; line-height: 45px; margin-right: 15px;"><%- username%></div>
+			<div class="input-group" style="float: right; width: 300px; margin-right: 50px; margin-top: 8px">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">搜索</button>
+				</span>
+				<input id="search"  type="text" class="form-control" placeholder="Search for...">
+			</div>
 		</div>
 	</div>
 </nav>
@@ -38,169 +40,278 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Reports</a></li>
-				<li><a href="#">Analytics</a></li>
-				<li><a href="#">Export</a></li>
+			<ul id="list" class="nav nav-sidebar">
+				<% for(var i = 0; i < listData.length; i++){%>
+					<% if( listData[i].index == 2 ){ %>
+				<li id="<%- listData[i]._id %>"><a href="javascript:;"><%- listData[i].name %></a></li>
+					<% } %>
+				<% } %>
 			</ul>
+			<% if( power == 1 ){ %>
 			<ul class="nav nav-sidebar">
-				<li><a href="">Nav item</a></li>
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-				<li><a href="">More navigation</a></li>
+				<li id="listTab"><a href="javascript:;">添加菜单</a></li>
+				<li id="userTab"><a href="javascript:;">新增成员</a></li>
 			</ul>
-			<ul class="nav nav-sidebar">
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-			</ul>
+			<% } %>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2 class="sub-header">Section title</h2>
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<thead>
-					<tr>
-						<th>#</th>
-						<th>Header</th>
-						<th>Header</th>
-						<th>Header</th>
-						<th>Header</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>1,001</td>
-						<td>Lorem</td>
-						<td>ipsum</td>
-						<td>dolor</td>
-						<td>sit</td>
-					</tr>
-					<tr>
-						<td>1,002</td>
-						<td>amet</td>
-						<td>consectetur</td>
-						<td>adipiscing</td>
-						<td>elit</td>
-					</tr>
-					<tr>
-						<td>1,003</td>
-						<td>Integer</td>
-						<td>nec</td>
-						<td>odio</td>
-						<td>Praesent</td>
-					</tr>
-					<tr>
-						<td>1,003</td>
-						<td>libero</td>
-						<td>Sed</td>
-						<td>cursus</td>
-						<td>ante</td>
-					</tr>
-					<tr>
-						<td>1,004</td>
-						<td>dapibus</td>
-						<td>diam</td>
-						<td>Sed</td>
-						<td>nisi</td>
-					</tr>
-					<tr>
-						<td>1,005</td>
-						<td>Nulla</td>
-						<td>quis</td>
-						<td>sem</td>
-						<td>at</td>
-					</tr>
-					<tr>
-						<td>1,006</td>
-						<td>nibh</td>
-						<td>elementum</td>
-						<td>imperdiet</td>
-						<td>Duis</td>
-					</tr>
-					<tr>
-						<td>1,007</td>
-						<td>sagittis</td>
-						<td>ipsum</td>
-						<td>Praesent</td>
-						<td>mauris</td>
-					</tr>
-					<tr>
-						<td>1,008</td>
-						<td>Fusce</td>
-						<td>nec</td>
-						<td>tellus</td>
-						<td>sed</td>
-					</tr>
-					<tr>
-						<td>1,009</td>
-						<td>augue</td>
-						<td>semper</td>
-						<td>porta</td>
-						<td>Mauris</td>
-					</tr>
-					<tr>
-						<td>1,010</td>
-						<td>massa</td>
-						<td>Vestibulum</td>
-						<td>lacinia</td>
-						<td>arcu</td>
-					</tr>
-					<tr>
-						<td>1,011</td>
-						<td>eget</td>
-						<td>nulla</td>
-						<td>Class</td>
-						<td>aptent</td>
-					</tr>
-					<tr>
-						<td>1,012</td>
-						<td>taciti</td>
-						<td>sociosqu</td>
-						<td>ad</td>
-						<td>litora</td>
-					</tr>
-					<tr>
-						<td>1,013</td>
-						<td>torquent</td>
-						<td>per</td>
-						<td>conubia</td>
-						<td>nostra</td>
-					</tr>
-					<tr>
-						<td>1,014</td>
-						<td>per</td>
-						<td>inceptos</td>
-						<td>himenaeos</td>
-						<td>Curabitur</td>
-					</tr>
-					<tr>
-						<td>1,015</td>
-						<td>sodales</td>
-						<td>ligula</td>
-						<td>in</td>
-						<td>libero</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
+			<%- include( temp + '.html')%>
 		</div>
 	</div>
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div id="mask">
+	<div id="upDataBox">
+		<div class="list">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">菜单名</span>
+				<input id="upDataListName" type="text" name="upDataListName" class="form-control" placeholder="新菜单名" aria-describedby="basic-addon1">
+			</div>
+			<button id="upDataList" class="btn btn-primary btn-block" style="width: 60px; margin: 30px auto 0 auto" type="submit">更新</button>
+		</div>
+
+		<form class="file" method="post" enctype="multipart/form-data">
+			<div class="input-group">
+					<span class="input-group-btn">
+					  <div class="btn btn-default btn-reset">文件</div>
+					</span>
+				<input id="upfile" type="file" name="file" class="form-control">
+			</div>
+			<button class="btn btn-primary btn-block" id="upDataFile" style="width: 60px; margin: 30px auto 0 auto" type="submit">更新</button>
+		</form>
+	</div>
+</div>
 
 <script>
 	$(function(){
-		alert($('.sidebar').width());
+	    $('.sidebar li').on('click', function () {
+            $('.sidebar li').removeClass('active');
+            $(this).addClass('active');
+        });
 		$('.main').css({'margin-left':$('.sidebar').width()+20+'px'});
+		$('#list > li').on('click', function(){
+            $('#listUpdata,#userUpdata').hide();
+            $('#fileUpload').show();
+            var id = $(this).attr('id');
+            $('.main').data('id',id);
+		    $('#title').html('列表管理<h4>' + $(this).text() + '</h4>');
+            fileList(id, 'list');
+		});
+		$('#listTab').on('click', function () {
+			$('#fileUpload,#userUpdata').hide();
+            $('#title').html($(this).text())
+			$('#listUpdata').show();
+            var _this = this;
+            $.get('/newlist', function (data) {
+                console.log(data);
+                $('#listTable > tbody,#listTable > thead').empty();
+                var tr = $('<tr></tr>');
+                tr.html('<td>序号</td><td>菜单名</td><td>操作</td>');
+                $('#listTable > thead').append(tr);
+                data.data.forEach(function (item, index) {
+                    var tr = $('<tr></tr>');
+                    tr.data('id', item._id);
+                    var num = index + 1;
+                    tr.html('<td>'+ num +'</td><td>'+ item.name +'</td>'<% if (power){ %>+'<td class="manPower"><a class="upData" href="javascript:;">更新</a></td><td class="deleteFile"><a href="javascript:;">删除</a></td>'<% } %>);
+                    $('#listTable > tbody').append(tr);
+                    deleteAction('list');
+                    upDataAction('list');
+                });
+            })
+        });
+        $('#userTab').on('click', function () {
+            $('#fileUpload,#listUpdata').hide();
+            $('#title').html($(this).text())
+            $('#userUpdata').show();
+            var _this = this;
+            $.get('/register', function (data) {
+				console.log(data);
+				$('#listTable > tbody,#listTable > thead').empty();
+                var tr = $('<tr></tr>');
+                tr.html('<td>序号</td><td>用户名</td><td>权限</td><td>操作</td>');
+                $('#listTable > thead').append(tr);
+				data.data.forEach(function (item, index) {
+                    var tr = $('<tr></tr>');
+                    tr.data('id', item._id);
+                    var num = index + 1;
+                    tr.html('<td>'+ num +'</td><td>'+ item.name +'</td><td>'+ (item.power ? '管理员':'用户') +'</td>'<% if (power){ %>+'<td class="deleteFile"><a href="javascript:;">删除</a></td>'<% } %>);
+                    $('#listTable > tbody').append(tr);
+                    deleteAction('user');
+                });
+            })
+        });
+		$('#list > li').eq(0).click();
+
+		$('#search').keyup(function (e) {
+			if( e.keyCode == 13 ){
+                $('.active').removeClass('active');
+                $('.manPower').hide();
+                $('#title').html('搜索结果');
+			    var rule = $('#search').val();
+                fileList( rule, 'search');
+            }
+        });
+
+		function fileList( rule, type) {
+		    var parmas = {
+		    	rule: rule,
+				type: type
+        	};
+            $.ajax({
+                data : parmas,
+                url : '/list',
+                type: 'post',
+                dataType : 'json',
+                success : function(data){
+                    if( !data.msg ){
+                        console.log(data.data);
+                        $('#listTable > tbody,#listTable > thead').empty();
+                        var tr = $('<tr></tr>');
+                        tr.html('<td>序号</td><td>文件名</td><td>更新时间</td><td colspan="4">操作</td>');
+                        $('#listTable > thead').append(tr);
+                        data.data.forEach(function(item, index){
+                            var tr = $('<tr></tr>');
+                            tr.data('id', item._id);
+                            var num = index + 1;
+                            tr.html('<td>'+ num +'</td>' +
+                                '<td>'+ item.name +'</td>' +
+                                '<td>'+ dealTime(item.lastUpdataTime,'YYYYMMDD') +'</td>' +
+                                '<td><a class="check" href="javascript:;">查看</a></td>' +
+                                '<td><a href="javascript:;">下载</a></td>' +
+                                <% if (power){ %>
+                                '<td class="manPower"><a class="upData" href="javascript:;">更新</a></td>' +
+                                '<td class="manPower"><a class="deleteFile" href="javascript:;">删除</a></td>'
+                                <% } %>);
+                            $('#listTable > tbody').append(tr);
+                        });
+                        $('.check').on('click', function () {
+                            var id = $(this).parents('tr').data('id');
+                            window.open('http://'+ location.host +'/users/'+id);
+                        });
+                        deleteAction('file');
+                        upDataAction('file');
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            })
+		}
+
+		$('#upDataList').on('click', function(e){
+            e.preventDefault();
+            var oID = $('#upDataBox').data('upDataID');
+            var name =$('#upDataListName').val();
+            $.ajax({
+                data : { name: name, oID: oID },
+                url : '/upDataList',
+                type: 'post',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                    if( !data.msg ){
+                        alert('更新成功');
+                        $('#mask').click();
+                        $('#listTab').click();
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            })
+    	});
+
+        $("#upfile").on("change",function(e){
+			console.log(111111111);
+            var e = e || window.event;
+            var files = e.target.files;
+            var file = files[0];
+            //文件上传
+            $("#upDataFile").off("click").on("click",function(e){
+                e.preventDefault();
+                var oID = $('#upDataBox').data('upDataID');
+                $.ajax({
+                    data : { fileID: oID },
+                    url : '/upDataFile',
+                    type: 'post',
+                    dataType : 'json',
+                    success: function(res){
+						var listID = res.data.listID;
+                        var formData = new FormData();
+                        formData.append('file', file);
+                        formData.append('listID', listID);
+                        formData.append('fileID', res.data.fileID);
+                        formData.append('ooname', res.data.name);
+                        formData.append('type', 'upData');
+                        $.ajax({
+                            url: "/profile",
+                            type: "post",
+                            data:formData,
+                            contentType: false,//使用multer配合ajax时无需配置multipart/form-data，multer将自动配置，手动配置将报错，boundary not found
+                            processData: false,
+                            success: function(res){
+                                console.log(res);
+                                alert(res.msg);
+                                $('#'+listID).click();
+                                $('#mask').click();
+                            },
+                            error:function(err){
+                                console.log(err);
+                                alert(err);
+                            }
+                        });
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+            });
+        });
+
+		$('#upDataBox').on('click', function(e){
+			e.stopPropagation();
+		});
+        $('#mask').on('click', function(e){
+            $('#mask').hide();
+        });
+
+		function upDataAction( type ) {
+            $('.upData').on('click', function () {
+                var fileID = $(this).parents('tr').data('id');
+                $('#mask').show();
+                $('#upDataBox').data('upDataID', fileID);
+                $('#mask > #upDataBox').children().hide();
+                $('#mask > #upDataBox > .' + type).show();
+            });
+        }
+
+		function deleteAction( type ) {//'file','user','list'对应文件表、用户表、菜单表操作
+            $('.deleteFile').on('click', function () {
+                var fileID = $(this).parents('tr').data('id');
+                $.ajax({
+                    data : { id: fileID, type: type },
+                    url : '/deleteFile',
+                    type: 'post',
+                    dataType : 'json',
+                    success : function(data){
+                        alert(data.msg);
+                        $('.active').click();
+                        if( type == 'list' ){
+							location.reload();
+                    	}
+                    }
+                })
+            });
+    	}
+
+		function dealTime( iosTime ) {
+		    var time = new Date( iosTime );
+		    var y = time.getFullYear(),
+				m = time.getMonth() < 9 ? '0' + (time.getMonth() + 1) : time.getMonth() + 1,
+				d = time.getDate() < 10 ? '0' + time.getDate() : time.getDate(),
+				h = time.getHours() < 10 ? '0' + time.getHours() : time.getHours(),
+				min = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes(),
+				s = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
+		    return y +'-'+ m +'-'+ d +' '+ h +':'+ min +':'+ s;
+		}
 	})
 </script>
 </body>
